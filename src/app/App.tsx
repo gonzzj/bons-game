@@ -8,6 +8,7 @@ const App = () => {
 	return (
 		<>
 			<CssBaseline />
+			<Login />
 			<Gameboard />
 		</>
 	);

@@ -1,7 +1,7 @@
 import React from 'react';
 import Character from './character';
 import Stats from './stats';
-import Card from './card';
+import GameCard from './GameCard';
 import Turns from './turns';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -28,13 +28,13 @@ const Login = () => {
                             <Stats />
                         </Grid>
                         <Grid item xs={4}>
-                            <Card />
+                            <GameCard />
                         </Grid>
                         <Grid item xs={4}>    
-                            <Card />
+                            <GameCard />
                         </Grid>
                         <Grid item xs={4}>
-                            <Card />
+                            <GameCard />
                         </Grid>
                     </Grid>
                     <Grid item xs={4}>
