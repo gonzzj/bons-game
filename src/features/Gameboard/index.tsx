@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Backdrop from '@material-ui/core/Backdrop';
 import Grid from '@material-ui/core/Grid';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './theme';
 import { selectPlayer } from '../../model/selectors/player';
 import { selectEnemy } from '../../model/selectors/enemy';
@@ -28,6 +29,7 @@ const Gameboard = () => {
     const game: Game = useSelector(selectGame);
     const player: Player = useSelector(selectPlayer);
     const enemy: Enemy = useSelector(selectEnemy);
+    const isMobile = useMediaQuery('(max-width:480px)');
 
     useEffect(() => {
         if (game.gameLoading && (player.hp <= 0 || game.turnsLeft === 0)) {
@@ -42,9 +44,9 @@ const Gameboard = () => {
 	return (
         <Container maxWidth={'lg'}>
             <div className={classes.paper}>
-                <Grid container spacing={10}>
-                    <Grid container item spacing={6} xs={8}>
-                        <Grid item xs={8}>
+                <Grid container spacing={isMobile ? 1 : 10} xs={12}>
+                    <Grid container item spacing={isMobile ? 1 : 6} xs={12} md={8}>
+                        <Grid item xs={12} md={8}>
                             <Character
                                 image={"https://vignette.wikia.nocookie.net/ssbb/images/8/84/Link_SSBU.png/revision/latest?cb=20180613002622&path-prefix=es"}
                                 name={player.name}
@@ -53,14 +55,14 @@ const Gameboard = () => {
                                 loading={game.gameLoading}
                             />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} md={4}>
                             <Stats 
                                 shield={player.shield}
                                 horror={player.horror}
                                 loading={game.gameLoading}
                             />
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={12} md={8}>
                             <Character 
                                 image={enemy.image}
                                 name={enemy.name}
@@ -69,14 +71,14 @@ const Gameboard = () => {
                                 loading={game.gameLoading}
                             />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} md={4}>
                             <Stats 
                                 shield={enemy.shield}
                                 loading={game.gameLoading}
                             />
                         </Grid>
                         {player.cards.map(card => 
-                            <Grid item xs={4} key={card.id}>
+                            <Grid item xs={12} md={4} key={card.id}>
                                 <GameCard 
                                     image={card.image}
                                     effect={card.effect}
@@ -90,7 +92,7 @@ const Gameboard = () => {
                             </Grid>
                         )}
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} md={4}>
                         <Turns
                             current={game.currentTurn + 1}
                             past={game.currentTurn}
