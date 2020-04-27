@@ -12,5 +12,6 @@ export interface Game {
     createdAt: string,
     updatedAt: string,
     gameLoading: boolean,
-    turnLoading: boolean
+    turnLoading: boolean,
+    modalEffects: boolean
 }

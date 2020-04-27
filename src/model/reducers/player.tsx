@@ -1,3 +1,4 @@
+import { find } from 'lodash';
 import { ActionTypes, PlayerActions } from '../actions/types';
 import { Player } from '../../shared/types/player';
 import { Card } from '../../shared/types/card';
@@ -84,10 +85,16 @@ export const player = (state = initialState, action: PlayerActions): Player => {
         case ActionTypes.END_TURN:
             const monsterEffect = action.payload.monsterEffect;
 
+            const cardSelected = find(state.cards, card => card.id === state.cardSelected);
+
             return {
                 ...state,
                 horror: monsterEffect.effect === Effect.HORROR,
-                cardSelected: ""
+                cardSelected: "",
+                effect: {
+                    name: cardSelected?.effect,
+                    value: cardSelected?.value
+                }
             }
 
         case ActionTypes.END_GAME:

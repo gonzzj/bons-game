@@ -11,6 +11,7 @@ export enum ActionTypes {
 	END_TURN = "END_TURN",
 	SET_GAME_LOADING = "SET_GAME_LOADING",
 	SET_END_TURN_LOADING = "SET_END_TURN_LOADING",
+	SET_MODAL_EFFECTS = "SET_MODAL_EFFECTS",
 	END_GAME = "END_GAME",
     GET_PLAYER = "GET_PLAYER",
 	GET_ENEMY = "GET_ENEMY",
@@ -44,6 +45,11 @@ export interface SetEndTurnLoadingAction {
 	payload: boolean
 }
 
+export interface setModalEffectsAction {
+	type: ActionTypes.SET_MODAL_EFFECTS,
+	payload: boolean
+}
+
 export interface EndGameAction {
 	type: ActionTypes.END_GAME
 }
@@ -68,8 +74,8 @@ export interface GetEnemyAction {
 	payload: Enemy
 }
 
-export type GameActions = CreateGameAction | EndTurnAction | SetGameLoadingAction | SetEndTurnLoadingAction | EndGameAction;
+export type GameActions = CreateGameAction | EndTurnAction | SetGameLoadingAction | SetEndTurnLoadingAction | EndGameAction | setModalEffectsAction;
 
 export type PlayerActions = GetPlayerAction | GetCardsAction | SelectCardAction | EndTurnAction | EndGameAction;
 
-export type EnemyActions = GetEnemyAction | EndGameAction;
+export type EnemyActions = GetEnemyAction | EndTurnAction | EndGameAction;

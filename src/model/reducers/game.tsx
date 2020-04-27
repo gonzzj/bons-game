@@ -9,7 +9,8 @@ const initialState: Game = {
     createdAt: "",
 	updatedAt: "",
 	gameLoading: false,
-	turnLoading: false
+	turnLoading: false,
+	modalEffects: false
 };
 
 export const gameboard = (state = initialState, action: GameActions): Game => {
@@ -48,6 +49,13 @@ export const gameboard = (state = initialState, action: GameActions): Game => {
 				...state,
 				turnLoading: action.payload
 			}
+
+		case ActionTypes.SET_MODAL_EFFECTS:
+			return {
+				...state,
+				modalEffects: action.payload
+			}
+	
 
 		case ActionTypes.END_GAME:
 			return initialState

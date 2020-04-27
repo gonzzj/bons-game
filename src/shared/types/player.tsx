@@ -1,4 +1,5 @@
 import { Card } from './card';
+import { Effect } from './effect';
 
 export interface Player {
     id: string,
@@ -6,6 +7,10 @@ export interface Player {
     maxHp: number,
     name: string,
     horror: boolean,
+    effect?: {
+        name: Effect | undefined,
+        value: number | undefined
+    },
     shield: number,
     cards: Card[], 
     createdAt: string,

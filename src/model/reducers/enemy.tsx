@@ -1,5 +1,6 @@
 import { ActionTypes, EnemyActions } from '../actions/types';
 import { Enemy } from '../../shared/types/enemy';
+import { Effect } from '../../shared/types/effect';
 
 const initialState: Enemy = {
 	id: "",
@@ -7,6 +8,10 @@ const initialState: Enemy = {
     maxHp: 0,
     shield: 0,
     name: "",
+    effect: {
+        name: Effect.DAMAGE,
+        value: 0
+    },
     image: "",
     createdAt: "",
     updatedAt: "",
@@ -31,6 +36,15 @@ export const enemy = (state = initialState, action: EnemyActions): Enemy => {
                 updatedAt,
                 gameId
             };
+
+        case ActionTypes.END_TURN:
+            return {
+                ...state,
+                effect: {
+                    name: action.payload.monsterEffect.effect,
+                    value: action.payload.monsterEffect.value
+                }
+            }
 
         case ActionTypes.END_GAME:
             return initialState

@@ -11,12 +11,11 @@ interface ModalProps {
     openModal: boolean,
     title?: string,
     body?: string,
-    children?: any,
     closeButton?: string,
     onClickButton: () => void
 };
 
-const Modal = ({openModal, title, body, children, closeButton, onClickButton}: ModalProps) => {
+const EndGameModal = ({openModal, title, body, closeButton, onClickButton}: ModalProps) => {
     return (
         <Dialog
             open={openModal}
@@ -25,7 +24,6 @@ const Modal = ({openModal, title, body, children, closeButton, onClickButton}: M
         >
             {!isEmpty(title) && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
             <DialogContent>
-                {children}
                 <DialogContentText id="alert-dialog-description" variant={"h4"}>
                     {body}
                 </DialogContentText>
@@ -44,4 +42,4 @@ const Modal = ({openModal, title, body, children, closeButton, onClickButton}: M
     );
 }
 
-export default Modal;
+export default EndGameModal;

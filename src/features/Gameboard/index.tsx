@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Character from './components/Character';
-import Modal from './components/Modal';
+import EndGameModal from './components/Modal/endGameModal';
+import TurnModal from './components/Modal/turnModal';
 import Stats from './components/Stats';
 import GameCard from './components/GameCard';
 import Turns from './components/Turns';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Backdrop from '@material-ui/core/Backdrop';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './theme';
 import { selectPlayer } from '../../model/selectors/player';
 import { selectEnemy } from '../../model/selectors/enemy';
 import { selectGame } from '../../model/selectors/game';
 import { selectCard } from '../../model/actions/player';
-import { endTurn, endGame } from '../../model/actions/game';
+import { endTurn, endGame, setModalEffects } from '../../model/actions/game';
 import { Enemy } from '../../shared/types/enemy';
 import { Player } from '../../shared/types/player';
 import { Game } from '../../shared/types/game';
@@ -98,12 +100,20 @@ const Gameboard = () => {
                         />
                     </Grid>
                 </Grid>
-                <Modal
-                    openModal={game.turnLoading}
-                    children={<CircularProgress />}
-                    onClickButton={() => []}
+                <Backdrop className={classes.backdrop} open={game.turnLoading}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+                <TurnModal
+                    openModal={game.modalEffects}
+                    title={"Turn actions"}
+                    closeButton={"Fight"}
+                    playerEffect={player.effect?.name || ""}
+                    playerValue={player.effect?.value || 0}
+                    enemyEffect={enemy.effect.name}
+                    enemyValue={enemy.effect.value}
+                    onClickButton={() => dispatch(setModalEffects(false))}
                 />
-                <Modal
+                <EndGameModal
                     openModal={endGameLose || endGameWin}
                     title={"Game Over"}
                     body={endGameWin ? "Congratulations! You win! :)" : "Ups... You Lose! :("}
