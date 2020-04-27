@@ -7,7 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import { Divider } from '@material-ui/core';
 
 interface ModalProps {
     openModal: boolean,
@@ -33,8 +32,7 @@ const TurnModal = ({openModal, title, playerEffect = "", playerValue = 0, enemyE
                     <strong>Player</strong>
                     <Typography component="span" variant="inherit">Card effect: <strong>{playerEffect}</strong></Typography>
                     <Typography component="span" variant="inherit">Value: <strong>{playerValue}</strong></Typography>
-                    <Divider style={{margin: '16px 0'}} />
-                    <strong>Enemy</strong>
+                    <strong style={{marginTop: '32px'}}>Enemy</strong>
                     <Typography component="span" variant="inherit">Card effect: <strong>{enemyEffect}</strong></Typography>
                     <Typography component="span" variant="inherit">Value: <strong>{enemyValue}</strong></Typography>
                 </DialogContentText>
