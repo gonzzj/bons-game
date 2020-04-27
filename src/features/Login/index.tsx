@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createGame } from '../../model/actions/game';
+import { isEmpty } from 'lodash';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
@@ -9,6 +12,9 @@ import useStyles from './theme';
 
 const Login = () => {
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+    const [name, changeName] = useState('');
 
 	return (
         <Container maxWidth={'sm'}>
@@ -28,14 +34,16 @@ const Login = () => {
                         label="Name"
                         name="name"
                         autoComplete="name"
+                        onChange={e => changeName(e.target.value)}
                         autoFocus
                     />
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={() => dispatch(createGame(name))}
+                        disabled={isEmpty(name)}
                     >
                         Let's Play
                     </Button>
