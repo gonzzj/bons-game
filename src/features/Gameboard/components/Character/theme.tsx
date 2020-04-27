@@ -10,10 +10,11 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            width: '60%'
+            width: '60%',
         },
         cover: {
-            width: '40%'
+            width: '40%',
+            transform: 'scale(1)'
         },
     }),
 );

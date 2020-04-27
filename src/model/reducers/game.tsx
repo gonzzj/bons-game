@@ -7,15 +7,14 @@ const initialState: Game = {
 	maxTurns: 0,
 	turnsLeft: 0,
     createdAt: "",
-    updatedAt: ""
+	updatedAt: "",
+	loading: false
 };
 
 export const gameboard = (state = initialState, action: GameActions): Game => {
-    const { type, payload } = action;
-    
-	switch (type) {
+	switch (action.type) {
 		case ActionTypes.CREATE_GAME:
-            const {id, currentTurn, maxTurns, turnsLeft, createdAt, updatedAt} = payload;
+            const {id, currentTurn, maxTurns, turnsLeft, createdAt, updatedAt} = action.payload;
 
 			return {
 				...state,
@@ -27,6 +26,22 @@ export const gameboard = (state = initialState, action: GameActions): Game => {
 				updatedAt
 			};
 
+		case ActionTypes.END_TURN:
+			const game = action.payload.game;
+
+			return {
+				...state,
+				currentTurn: game.currentTurn,
+				turnsLeft: game.turnsLeft,
+				updatedAt: game.updatedAt
+			}
+
+		case ActionTypes.SET_LOADING:
+			return {
+				...state,
+				loading: action.payload
+			}
+			
 		default:
 			return state;
 	}

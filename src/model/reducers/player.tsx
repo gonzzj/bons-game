@@ -8,18 +8,37 @@ const initialState: Player = {
     hp: 0,
     maxHp: 0,
     shield: 0,
+    horror: false,
     name: "",
-    cards: [],
+    cards: [{
+        id: "000",
+        value: 0,
+        effect: Effect.DAMAGE,
+        image: ""
+    },
+    {
+        id: "001",
+        value: 0,
+        effect: Effect.DAMAGE,
+        image: ""
+    },
+    {
+        id: "002",
+        value: 0,
+        effect: Effect.DAMAGE,
+        image: ""
+    }],
     createdAt: "",
     updatedAt: "",
-    gameId: ""
+    gameId: "",
+    cardSelected: ""
 };
 
 export const player = (state = initialState, action: PlayerActions): Player => {
     
 	switch (action.type) {
-		case ActionTypes.CREATE_PLAYER:
-            const { id, hp, maxHp, name, createdAt, updatedAt, gameId }: Player = action.payload;
+		case ActionTypes.GET_PLAYER:
+            const { id, hp, maxHp, name, shield, createdAt, updatedAt, gameId }: Player = action.payload;
 
             return {
                 ...state,
@@ -27,6 +46,7 @@ export const player = (state = initialState, action: PlayerActions): Player => {
                 hp,
                 maxHp,
                 name,
+                shield,
                 createdAt,
                 updatedAt,
                 gameId
@@ -41,7 +61,7 @@ export const player = (state = initialState, action: PlayerActions): Player => {
                         card.image = "https://www.hellenic-art.com/images/thumbnails/635/487/detailed/7/macedonian-sword.png";
                         break;
                     case Effect.HEAL:
-                        card.image = "https://lh3.googleusercontent.com/proxy/_wRGwxhch2bAZGYI-k-fi8A4cDzyTNSqk6rC0ElDUOsRTepl4obeJNc5h48m-fmIlU1RGJkrlV4VX6CIOwBEAigvFL4Vg5T6xDJqkXJxVyo2tI0"
+                        card.image = "https://i.pinimg.com/originals/40/ed/8e/40ed8e381cf0876d77b540144c1247e0.png"
                         break;
                     case Effect.SHIELD:
                         card.image = "https://www.alsterlegal.com/wp-content/uploads/2017/05/medieval-crusader-metal-shield.jpg";
@@ -52,6 +72,24 @@ export const player = (state = initialState, action: PlayerActions): Player => {
                 ...state,
                 cards: action.payload
             };
+
+        case ActionTypes.SELECT_CARD:
+            const card = action.payload === state.cardSelected ? '' : action.payload;
+
+            return {
+                ...state,
+                cardSelected: card
+            }
+
+        case ActionTypes.END_TURN:
+            const monsterEffect = action.payload.monsterEffect;
+
+            return {
+                ...state,
+                horror: monsterEffect.effect === Effect.HORROR,
+                cardSelected: ""
+            }
+
 		default:
 			return state;
 	}

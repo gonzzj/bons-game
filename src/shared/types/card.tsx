@@ -5,6 +5,6 @@ export interface Card {
     value: number,
     effect: Effect,
     image: string,
-    createdAt: string,
-    updatedAt: string
+    createdAt?: string,
+    updatedAt?: string
 }

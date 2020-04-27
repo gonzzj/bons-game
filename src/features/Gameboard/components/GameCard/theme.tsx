@@ -9,6 +9,14 @@ const useStyles = makeStyles((theme: Theme) =>
                 backgroundColor: theme.palette.grey[300],
             }
         },
+        root2: {
+            height: 300,
+            transition: 'background-color 250ms linear',
+            backgroundColor: '#4caf50',
+            '&:hover': {
+                backgroundColor: '#419945',
+            }
+        },
         action: {
             display: 'block',
             height: '100%',
@@ -16,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         media: {
             height: '60%',
-            border: '16px solid transparent',
+            border: '16px solid #fff',
             backgroundSize: 'contain'
         },
         content: {

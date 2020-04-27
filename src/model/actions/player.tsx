@@ -1,35 +1,39 @@
-import Superagent from 'superagent';
+import request from 'superagent';
 import { Dispatch } from 'redux';
-import { ActionTypes, CreatePlayerAction, GetCardsAction } from './types';
+import { ActionTypes, GetPlayerAction, GetCardsAction } from './types';
 import { IStore } from '../Store';
+import { setLoading } from './game';
 
-export const createPlayer = () => {
-    return async (dispatch: Dispatch<CreatePlayerAction>, getState: () => IStore) => {
+export const getPlayer = () => {
+    return async (dispatch: Dispatch<GetPlayerAction | any>, getState: () => IStore) => {
 		const state = getState();
 
-		Superagent.get(`${process.env.REACT_APP_API_SERVICE}/games/${state.game.id}/player`)
+		request.get(`${process.env.REACT_APP_API_SERVICE}/games/${state.game.id}/player`)
 			.set('Content-Type', 'application/json')
-			.end((err: any, res: any) => {
+			.then(res => {
 				try {
 					dispatch({
-						type: ActionTypes.CREATE_PLAYER,
+						type: ActionTypes.GET_PLAYER,
 						payload: res.body
 					});
 				}
 				catch (e) {
 					console.log(e);
 				}
+			})
+			.then(() => {
+				dispatch(getCards());
 			});
 	};
 };
 
 export const getCards = () => {
-    return async (dispatch: Dispatch<GetCardsAction>, getState: () => IStore) => {
+    return async (dispatch: Dispatch<GetCardsAction | any>, getState: () => IStore) => {
 		const state = getState();
 
-		Superagent.get(`${process.env.REACT_APP_API_SERVICE}/players/${state.player.id}/cards`)
+		request.get(`${process.env.REACT_APP_API_SERVICE}/players/${state.player.id}/cards`)
 			.set('Content-Type', 'application/json')
-			.end((err: any, res: any) => {
+			.then(res => {
 				try {
 					dispatch({
 						type: ActionTypes.GET_CARDS,
@@ -39,6 +43,16 @@ export const getCards = () => {
 				catch (e) {
 					console.log(e);
 				}
+			})
+			.then(() => {
+				dispatch(setLoading(true));
 			});
 	};
 };
+
+export const selectCard = (cardId: string) => {
+	return {
+		type: ActionTypes.SELECT_CARD,
+		payload: cardId
+	}
+}

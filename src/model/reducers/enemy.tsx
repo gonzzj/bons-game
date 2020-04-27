@@ -14,17 +14,17 @@ const initialState: Enemy = {
 };
 
 export const enemy = (state = initialState, action: EnemyActions): Enemy => {
-    const { type, payload } = action;
-    
-	switch (type) {
-		case ActionTypes.CREATE_ENEMY:
-            const { id, hp, maxHp, name, image, createdAt, updatedAt, gameId } = payload;
+
+	switch (action.type) {
+		case ActionTypes.GET_ENEMY:
+            const { id, hp, maxHp, name, image, shield, createdAt, updatedAt, gameId } = action.payload;
 
             return {
                 ...state,
                 id,
                 hp,
                 maxHp,
+                shield,
                 name,
                 image,
                 createdAt,

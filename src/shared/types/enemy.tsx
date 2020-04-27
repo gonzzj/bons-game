@@ -2,7 +2,7 @@ export interface Enemy {
     id: string,
     hp: number,
     maxHp: number,
-    shield: 0,
+    shield: number,
     name: string,
     image: string
     createdAt: string,

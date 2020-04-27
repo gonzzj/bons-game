@@ -10,5 +10,6 @@ export interface Game {
     player?: Player,
     enemy?: Enemy
     createdAt: string,
-    updatedAt: string
+    updatedAt: string,
+    loading: boolean
 }

@@ -4,14 +4,17 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './theme';
+import TurnsTitle from './TurnsTitle';
 
 interface TurnsProps {
 	current: number,
 	past: number,
-	left: number
+	left: number,
+	disabled: boolean,
+	onClick: () => void
 }
 
-const Turns = ({current, past, left} : TurnsProps) => {
+const Turns = ({current, past, left, onClick, disabled} : TurnsProps) => {
 	const classes = useStyles();
 
 	return (
@@ -23,28 +26,13 @@ const Turns = ({current, past, left} : TurnsProps) => {
 			</div>
 			<Divider />
 			<div className={classes.content}>
-				<Typography gutterBottom variant="h4" component="h2">
-					Current
-				</Typography>
-				<Typography gutterBottom variant="h3" component="h3">
-					<strong>{current}</strong>
-				</Typography>
-				<Typography gutterBottom variant="h4" component="h2">
-					Past
-				</Typography>
-				<Typography gutterBottom variant="h3" component="h3">
-					<strong>{past}</strong>
-				</Typography>
-				<Typography gutterBottom variant="h4" component="h2">
-					Left
-				</Typography>
-				<Typography gutterBottom variant="h3" component="h3">
-					<strong>{left}</strong>
-				</Typography>
+				<TurnsTitle title={'Current'} value={current} />
+				<TurnsTitle title={'Past'} value={past} />
+				<TurnsTitle title={'Left'} value={left} />
 			</div>
 			<Divider />
 			<div className={classes.bottom}>
-				<Button variant="contained" color="primary" className={classes.button}>
+				<Button variant="contained" color="primary" className={classes.button} onClick={() => onClick()} disabled={!disabled}>
 					End Turn
 				</Button>
 			</div>

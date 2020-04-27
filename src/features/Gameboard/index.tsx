@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Character from './components/Character';
 import Stats from './components/Stats';
 import GameCard from './components/GameCard';
@@ -13,9 +13,12 @@ import { selectGame } from '../../model/selectors/game';
 import { Enemy } from '../../shared/types/enemy';
 import { Player } from '../../shared/types/player';
 import { Game } from '../../shared/types/game';
+import { selectCard } from '../../model/actions/player';
+import { endTurn } from '../../model/actions/game';
 
 const Gameboard = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const game: Game = useSelector(selectGame);
     const player: Player = useSelector(selectPlayer);
     const enemy: Enemy = useSelector(selectEnemy);
@@ -31,11 +34,14 @@ const Gameboard = () => {
                                 name={player.name}
                                 hp={player.hp}
                                 maxHp={player.maxHp}
+                                loading={game.loading}
                             />
                         </Grid>
                         <Grid item xs={4}>
                             <Stats 
                                 shield={player.shield}
+                                horror={player.horror}
+                                loading={game.loading}
                             />
                         </Grid>
                         <Grid item xs={8}>
@@ -44,28 +50,37 @@ const Gameboard = () => {
                                 name={enemy.name}
                                 hp={enemy.hp}
                                 maxHp={enemy.maxHp}
+                                loading={game.loading}
                             />
                         </Grid>
                         <Grid item xs={4}>
                             <Stats 
                                 shield={enemy.shield}
+                                loading={game.loading}
                             />
                         </Grid>
                         {player.cards.map(card => 
-                            <Grid item xs={4}>
+                            <Grid item xs={4} key={card.id}>
                                 <GameCard 
                                     image={card.image}
                                     effect={card.effect}
                                     value={card.value}
+                                    id={card.id}
+                                    selected={card.id === player.cardSelected}
+                                    onClick={(id: string) => dispatch(selectCard(id))}
+                                    disabled={player.horror}
+                                    loading={game.loading}
                                 />
                             </Grid>
                         )}
                     </Grid>
                     <Grid item xs={4}>
                         <Turns
-                            current={game.currentTurn}
-                            past={game.currentTurn - 1}
-                            left={game.maxTurns - game.currentTurn}
+                            current={game.currentTurn + 1}
+                            past={game.currentTurn}
+                            left={game.turnsLeft}
+                            onClick={() => dispatch(endTurn())}
+                            disabled={game.loading}
                         />
                     </Grid>
                 </Grid>
