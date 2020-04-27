@@ -39,12 +39,13 @@ const Gameboard = () => {
         if (game.gameLoading && (enemy.hp <= 0)) {
             setEndGameWin(true);
         }
+        setEndGameLose(true);
     }, [enemy.hp, player.hp, game.turnsLeft, game.gameLoading])
 
 	return (
         <Container maxWidth={'lg'}>
             <div className={classes.paper}>
-                <Grid container spacing={isMobile ? 1 : 10} xs={12}>
+                <Grid container spacing={isMobile ? 1 : 10}>
                     <Grid container item spacing={isMobile ? 1 : 6} xs={12} md={8}>
                         <Grid item xs={12} md={8}>
                             <Character

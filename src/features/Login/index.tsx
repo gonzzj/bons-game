@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { createGame } from '../../model/actions/game';
 import { isEmpty } from 'lodash';
 import Container from '@material-ui/core/Container';
@@ -9,12 +9,19 @@ import Button from '@material-ui/core/Button';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsportsRounded';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './theme';
+import { Game } from '../../shared/types/game';
+import { selectGame } from '../../model/selectors/game';
 
 const Login = () => {
     const classes = useStyles();
-
     const dispatch = useDispatch();
     const [name, changeName] = useState('');
+    const [deactivate, deactivateLogin] = useState(false);
+    const game: Game = useSelector(selectGame);
+
+    useEffect(() => {
+        isEmpty(game.id) && deactivateLogin(false);
+    }, [game.id])
 
 	return (
         <Container maxWidth={'sm'}>
@@ -42,8 +49,11 @@ const Login = () => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => dispatch(createGame(name))}
-                        disabled={isEmpty(name)}
+                        onClick={() => {
+                            dispatch(createGame(name));
+                            deactivateLogin(true);
+                        }}
+                        disabled={isEmpty(name) || deactivate}
                     >
                         Let's Play
                     </Button>
