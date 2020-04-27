@@ -16,7 +16,8 @@ export enum ActionTypes {
     GET_PLAYER = "GET_PLAYER",
 	GET_ENEMY = "GET_ENEMY",
 	GET_CARDS = "GET_CARDS",
-	SELECT_CARD = "SELECT_CARD"
+	SELECT_CARD = "SELECT_CARD",
+	SET_ERROR = "SET_ERROR"
 }
 
 export interface CreateGameAction {
@@ -74,8 +75,18 @@ export interface GetEnemyAction {
 	payload: Enemy
 }
 
+export interface SetErrorAction {
+	type: ActionTypes.SET_ERROR
+	payload: {
+		error: Response,
+		status: number
+	}
+}
+
 export type GameActions = CreateGameAction | EndTurnAction | SetGameLoadingAction | SetEndTurnLoadingAction | EndGameAction | setModalEffectsAction;
 
 export type PlayerActions = GetPlayerAction | GetCardsAction | SelectCardAction | EndTurnAction | EndGameAction;
 
 export type EnemyActions = GetEnemyAction | EndTurnAction | EndGameAction;
+
+export type ErrorActions = SetErrorAction;
