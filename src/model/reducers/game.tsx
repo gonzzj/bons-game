@@ -1,5 +1,4 @@
-import { GameActionTypes } from '../actions/types';
-import { GameActions } from '../actions/game';
+import { ActionTypes, GameActions } from '../actions/types';
 import { Game } from '../../shared/types/game';
 
 const initialState: Game = {
@@ -11,11 +10,11 @@ const initialState: Game = {
     updatedAt: ""
 };
 
-export const gameboard = (state = initialState, action: GameActions) => {
+export const gameboard = (state = initialState, action: GameActions): Game => {
     const { type, payload } = action;
     
 	switch (type) {
-		case GameActionTypes.CREATE_GAME:
+		case ActionTypes.CREATE_GAME:
             const {id, currentTurn, maxTurns, turnsLeft, createdAt, updatedAt} = payload;
 
 			return {
