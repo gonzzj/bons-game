@@ -12,6 +12,8 @@ Use `npm install` or `yarn install` on the root in order to install the dependen
 
 http://github.com/bons/handbook/blob/master/code-style/react.md
 
+Used [material-ui](https://material-ui.com/) to mock the react components
+
 ## Available Scripts
 
 In the project directory, you can run:
