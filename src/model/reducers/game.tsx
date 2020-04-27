@@ -8,7 +8,8 @@ const initialState: Game = {
 	turnsLeft: 0,
     createdAt: "",
 	updatedAt: "",
-	loading: false
+	gameLoading: false,
+	turnLoading: false
 };
 
 export const gameboard = (state = initialState, action: GameActions): Game => {
@@ -36,11 +37,20 @@ export const gameboard = (state = initialState, action: GameActions): Game => {
 				updatedAt: game.updatedAt
 			}
 
-		case ActionTypes.SET_LOADING:
+		case ActionTypes.SET_GAME_LOADING:
 			return {
 				...state,
-				loading: action.payload
+				gameLoading: action.payload
 			}
+
+		case ActionTypes.SET_END_TURN_LOADING:
+			return {
+				...state,
+				turnLoading: action.payload
+			}
+
+		case ActionTypes.END_GAME:
+			return initialState
 			
 		default:
 			return state;

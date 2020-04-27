@@ -32,6 +32,9 @@ export const enemy = (state = initialState, action: EnemyActions): Enemy => {
                 gameId
             };
 
+        case ActionTypes.END_GAME:
+            return initialState
+
 		default:
 			return state;
 	}

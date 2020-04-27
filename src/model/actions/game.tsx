@@ -33,6 +33,7 @@ export const endTurn = () => {
 		const gameId = state.game.id;
 		const card = state.player.cardSelected;
 
+		dispatch(setEndTurnLoading(true));
 		request.post(`${process.env.REACT_APP_API_SERVICE}/games/${gameId}/next-turn`)
 			.send({ card })
 			.set('Content-Type', 'application/json')
@@ -50,12 +51,28 @@ export const endTurn = () => {
 				dispatch(getPlayer());
 				dispatch(getEnemy());
 			})
+			.then(() => {
+				dispatch(setEndTurnLoading(false));
+			})
 	};
 };
 
-export const setLoading = (loading: boolean) => {
+export const setGameLoading = (loading: boolean) => {
 	return {
-		type: ActionTypes.SET_LOADING,
+		type: ActionTypes.SET_GAME_LOADING,
 		payload: loading
 	}
-}
+};
+
+export const setEndTurnLoading = (loading: boolean) => {
+	return {
+		type: ActionTypes.SET_END_TURN_LOADING,
+		payload: loading
+	}
+};
+
+export const endGame = () => {
+	return {
+		type: ActionTypes.END_GAME
+	}
+};

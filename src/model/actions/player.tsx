@@ -2,7 +2,7 @@ import request from 'superagent';
 import { Dispatch } from 'redux';
 import { ActionTypes, GetPlayerAction, GetCardsAction } from './types';
 import { IStore } from '../Store';
-import { setLoading } from './game';
+import { setGameLoading } from './game';
 
 export const getPlayer = () => {
     return async (dispatch: Dispatch<GetPlayerAction | any>, getState: () => IStore) => {
@@ -45,7 +45,7 @@ export const getCards = () => {
 				}
 			})
 			.then(() => {
-				dispatch(setLoading(true));
+				dispatch(setGameLoading(true));
 			});
 	};
 };

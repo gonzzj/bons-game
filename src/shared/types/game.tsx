@@ -11,5 +11,6 @@ export interface Game {
     enemy?: Enemy
     createdAt: string,
     updatedAt: string,
-    loading: boolean
+    gameLoading: boolean,
+    turnLoading: boolean
 }

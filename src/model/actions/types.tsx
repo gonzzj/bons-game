@@ -9,7 +9,9 @@ import { Effect } from '../../shared/types/effect';
 export enum ActionTypes {
 	CREATE_GAME = "CREATE_GAME",
 	END_TURN = "END_TURN",
-	SET_LOADING = "SET_LOADING",
+	SET_GAME_LOADING = "SET_GAME_LOADING",
+	SET_END_TURN_LOADING = "SET_END_TURN_LOADING",
+	END_GAME = "END_GAME",
     GET_PLAYER = "GET_PLAYER",
 	GET_ENEMY = "GET_ENEMY",
 	GET_CARDS = "GET_CARDS",
@@ -32,9 +34,18 @@ export interface EndTurnAction {
 	}
 }
 
-export interface SetLoadingAction {
-	type: ActionTypes.SET_LOADING,
+export interface SetGameLoadingAction {
+	type: ActionTypes.SET_GAME_LOADING,
 	payload: boolean
+}
+
+export interface SetEndTurnLoadingAction {
+	type: ActionTypes.SET_END_TURN_LOADING,
+	payload: boolean
+}
+
+export interface EndGameAction {
+	type: ActionTypes.END_GAME
 }
 
 export interface GetPlayerAction {
@@ -57,8 +68,8 @@ export interface GetEnemyAction {
 	payload: Enemy
 }
 
-export type GameActions = CreateGameAction | EndTurnAction | SetLoadingAction;
+export type GameActions = CreateGameAction | EndTurnAction | SetGameLoadingAction | SetEndTurnLoadingAction | EndGameAction;
 
-export type PlayerActions = GetPlayerAction | GetCardsAction | SelectCardAction | EndTurnAction;
+export type PlayerActions = GetPlayerAction | GetCardsAction | SelectCardAction | EndTurnAction | EndGameAction;
 
-export type EnemyActions = GetEnemyAction;
+export type EnemyActions = GetEnemyAction | EndGameAction;

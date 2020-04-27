@@ -90,6 +90,9 @@ export const player = (state = initialState, action: PlayerActions): Player => {
                 cardSelected: ""
             }
 
+        case ActionTypes.END_GAME:
+            return initialState
+
 		default:
 			return state;
 	}

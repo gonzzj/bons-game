@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         media: {
             height: '60%',
-            border: '16px solid #fff',
+            margin: 16,
+            backgroundColor: '#fff',
             backgroundSize: 'contain'
         },
         content: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '40%'
+            height: '30%'
         }
     }),
 );
