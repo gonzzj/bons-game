@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { selectGameId } from '../model/selectors/game';
 import { selectEnemyId } from '../model/selectors/enemy';
 import { selectPlayerId } from '../model/selectors/player';
-import { createPlayer } from '../model/actions/player';
+import { createPlayer, getCards } from '../model/actions/player';
 import { createEnemy } from '../model/actions/enemy';
 
 const App = () => {
@@ -23,6 +23,10 @@ const App = () => {
 			dispatch(createEnemy());
 		}
 	}, [dispatch, idGame]);
+
+	useEffect(() => {
+		!isEmpty(idPlayer) && dispatch(getCards());
+	}, [dispatch, idPlayer])
 
 	return (
 		<>

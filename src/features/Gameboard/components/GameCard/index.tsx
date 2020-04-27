@@ -5,9 +5,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import useStyles from './theme';
+import { Effect } from '../../../../shared/types/effect';
 
+interface CardProps {
+	image: string,
+	effect: Effect,
+	value: number,
+}
 
-const GameCard = () => {
+const GameCard = ({ image, effect, value}: CardProps) => {
 	const classes = useStyles();
 	
 	return (
@@ -15,12 +21,12 @@ const GameCard = () => {
 			<ButtonBase className={classes.action}>
 				<CardMedia
 					className={classes.media}
-					image="https://www.zbrushcentral.com/uploads/default/original/3X/0/c/0c3cf6cb673d4e549e027ef90007dc5019dda60d.jpeg"
-					title="Contemplative Reptile"
+					image={image}
+					title={effect}
 				/>
 				<CardContent className={classes.content}>
-					<Typography gutterBottom variant="h4" component="h2">
-						Heal
+					<Typography gutterBottom variant="h5" component="h2">
+						{effect} : {value}
 					</Typography>
 				</CardContent>
 			</ButtonBase>

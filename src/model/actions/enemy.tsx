@@ -7,7 +7,7 @@ export const createEnemy = () => {
     return async (dispatch: Dispatch<CreateEnemyAction>, getState: () => IStore) => {
 		const state = getState();
 
-		Superagent.get(`${process.env.REACT_APP_API_SERVICE}/games/${state.game.id}/player`)
+		Superagent.get(`${process.env.REACT_APP_API_SERVICE}/games/${state.game.id}/monster`)
 			.set('Content-Type', 'application/json')
 			.end((err: any, res: any) => {
 				try {

@@ -5,23 +5,29 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './theme';
 
+interface CharacterProps {
+	image: string,
+	name: string,
+	hp: number,
+	maxHp: number
+}
 
-const Character = () => {
+const Character = ({ image, name, hp, maxHp }: CharacterProps) => {
 	const classes = useStyles();
 	
 	return (
         <Card className={classes.root}>
 			<CardMedia
 				className={classes.cover}
-				image="https://www.zbrushcentral.com/uploads/default/original/3X/0/c/0c3cf6cb673d4e549e027ef90007dc5019dda60d.jpeg"
-				title="Live from space album cover"
+				image={image}
+				title={name}
 			/>
 			<CardContent className={classes.content}>
 				<Typography component="h5" variant="h5">
-					Enemy
+					{name}
 				</Typography>
 				<Typography component="span" variant="h6">
-					HP: <strong>32/40</strong>
+					HP: <strong>{hp} / {maxHp}</strong>
 				</Typography>
 			</CardContent>
 		</Card>

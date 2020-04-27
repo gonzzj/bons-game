@@ -5,6 +5,7 @@ const initialState: Enemy = {
 	id: "",
     hp: 0,
     maxHp: 0,
+    shield: 0,
     name: "",
     image: "",
     createdAt: "",

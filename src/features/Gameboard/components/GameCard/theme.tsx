@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         media: {
             height: '60%',
-            border: '16px solid transparent'
+            border: '16px solid transparent',
+            backgroundSize: 'contain'
         },
         content: {
             display: 'flex',

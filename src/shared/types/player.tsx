@@ -5,6 +5,7 @@ export interface Player {
     hp: number,
     maxHp: number,
     name: string,
+    shield: number,
     cards: Card[], 
     createdAt: string,
     updatedAt: string,
