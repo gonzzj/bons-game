@@ -39,7 +39,6 @@ const Gameboard = () => {
         if (game.gameLoading && (enemy.hp <= 0)) {
             setEndGameWin(true);
         }
-        setEndGameLose(true);
     }, [enemy.hp, player.hp, game.turnsLeft, game.gameLoading])
 
 	return (
