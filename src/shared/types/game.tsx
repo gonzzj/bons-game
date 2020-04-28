@@ -1,8 +1,8 @@
 
-import { Player } from './player';
-import { Enemy } from './enemy';
+import Player from './player';
+import Enemy from './enemy';
 
-export interface Game {
+export default interface Game {
     id: string,
     currentTurn: number,
     maxTurns: number,

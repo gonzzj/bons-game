@@ -1,5 +1,5 @@
 import { ActionTypes, ErrorActions } from '../actions/types';
-import { Error } from '../../shared/types/error';
+import Error from '../../shared/types/error';
 
 const initialState: Error = {
     message: '',

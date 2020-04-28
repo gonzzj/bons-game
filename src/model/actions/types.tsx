@@ -1,9 +1,9 @@
 // ACTIONS
 
-import { Game } from '../../shared/types/game';
-import { Player } from '../../shared/types/player';
-import { Enemy } from '../../shared/types/enemy';
-import { Card } from '../../shared/types/card';
+import Game from '../../shared/types/game';
+import Player from '../../shared/types/player';
+import Enemy from '../../shared/types/enemy';
+import Card from '../../shared/types/card';
 import { Effect } from '../../shared/types/effect';
 
 export enum ActionTypes {

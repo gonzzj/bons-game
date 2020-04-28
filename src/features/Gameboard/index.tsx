@@ -17,9 +17,9 @@ import { selectEnemy } from '../../model/selectors/enemy';
 import { selectGame } from '../../model/selectors/game';
 import { selectCard } from '../../model/actions/player';
 import { endTurn, endGame, setModalEffects } from '../../model/actions/game';
-import { Enemy } from '../../shared/types/enemy';
-import { Player } from '../../shared/types/player';
-import { Game } from '../../shared/types/game';
+import Enemy from '../../shared/types/enemy';
+import Player from '../../shared/types/player';
+import Game from '../../shared/types/game';
 
 const Gameboard = () => {
     const classes = useStyles();

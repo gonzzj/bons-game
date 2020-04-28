@@ -8,8 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { selectGameId } from '../model/selectors/game';
 import ErrorBoundary from './ErrorBoundary';
 import { selectError } from '../model/selectors/error';
-import { Error } from '../shared/types/error';
-import ErrorPage from '../features/Error';
+import Error from '../shared/types/error';
 
 const App = () => {
 	const idGame: string = useSelector(selectGameId);
@@ -18,13 +17,9 @@ const App = () => {
 	return (
 		<>
 			<CssBaseline />
-			{!error.status ?
-				<ErrorBoundary>
-					{isEmpty(idGame) ? <Login /> : <Gameboard/>}
-				</ErrorBoundary>
-			: 
-				<ErrorPage error={error} />
-			}
+			<ErrorBoundary errorRes={error}>
+				{isEmpty(idGame) ? <Login /> : <Gameboard/>}
+			</ErrorBoundary>
 		</>
 	);
 };

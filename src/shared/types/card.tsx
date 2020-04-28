@@ -1,6 +1,6 @@
 import { Effect } from './effect';
 
-export interface Card {
+export default interface Card {
     id: string,
     value: number,
     effect: Effect,

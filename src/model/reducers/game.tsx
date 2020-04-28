@@ -1,5 +1,5 @@
 import { ActionTypes, GameActions } from '../actions/types';
-import { Game } from '../../shared/types/game';
+import Game from '../../shared/types/game';
 
 const initialState: Game = {
 	id: "",

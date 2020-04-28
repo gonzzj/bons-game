@@ -1,7 +1,8 @@
-import React, { Component, ErrorInfo } from "react";
-import Error from '../features/Error';
+import React, { Component, ErrorInfo, ReactChild } from "react";
+import ErrorPage from '../features/Error';
+import { default as IError } from "../shared/types/error";
 
-class ErrorBoundary extends Component {
+class ErrorBoundary extends Component<{errorRes: IError, children: ReactChild}> {
     public state = { error: null, errorInfo: null };
 
     public componentDidCatch(error: Error, info: ErrorInfo) {
@@ -12,8 +13,8 @@ class ErrorBoundary extends Component {
     }
 
     public render() {
-        if (this.state.errorInfo) {
-            return <Error error={this.state.error} />;
+        if (this.state.errorInfo || this.props.errorRes.status) {
+            return <ErrorPage error={this.state.error || this.props.errorRes} />;
         }
 
         return this.props.children;

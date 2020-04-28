@@ -1,7 +1,7 @@
 import { find } from 'lodash';
 import { ActionTypes, PlayerActions } from '../actions/types';
-import { Player } from '../../shared/types/player';
-import { Card } from '../../shared/types/card';
+import Player from '../../shared/types/player';
+import Card from '../../shared/types/card';
 import { Effect } from '../../shared/types/effect';
 
 const initialState: Player = {

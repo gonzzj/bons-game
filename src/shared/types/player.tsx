@@ -1,7 +1,7 @@
-import { Card } from './card';
+import Card from './card';
 import { Effect } from './effect';
 
-export interface Player {
+export default interface Player {
     id: string,
     hp: number,
     maxHp: number,

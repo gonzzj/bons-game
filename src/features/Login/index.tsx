@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsportsRounded';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './theme';
-import { Game } from '../../shared/types/game';
+import Game from '../../shared/types/game';
 import { selectGame } from '../../model/selectors/game';
 
 const Login = () => {

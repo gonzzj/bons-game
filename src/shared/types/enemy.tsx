@@ -1,6 +1,6 @@
 import { Effect } from './effect';
 
-export interface Enemy {
+export default interface Enemy {
     id: string,
     hp: number,
     maxHp: number,

@@ -1,5 +1,5 @@
 import { ActionTypes, EnemyActions } from '../actions/types';
-import { Enemy } from '../../shared/types/enemy';
+import Enemy from '../../shared/types/enemy';
 import { Effect } from '../../shared/types/effect';
 
 const initialState: Enemy = {

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { IStore } from '../Store';
 import { get } from 'lodash';
-import { Game } from '../../shared/types/game';
+import Game from '../../shared/types/game';
 
 export const selectGame = (state: IStore) => state.game;
 
